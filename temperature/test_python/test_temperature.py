@@ -15,8 +15,5 @@ while True:
         t = str(temp)
         h = str(hum)
 
-        setRGB(0,128,64)
-        setRGB(0,255,0)
-        setText("Temp:" + t + "C " + "Humidity :" + h + "%") 
     except (IOError,TypeError) as e:
         print "Error"
