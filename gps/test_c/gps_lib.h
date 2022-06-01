@@ -9,6 +9,7 @@
 #define TRAME_NMEA 2
 #define PARSE_DATA 3
 #define URC_REPORT 4 
+#define TURN_OFF_GPS 5 
 
 #endif //TESTISA_ILG_KINEIS_H
 

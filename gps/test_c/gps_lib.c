@@ -57,6 +57,15 @@ int w_gps(int action) {
             	//printf("Reponse du kit : %s \r\n",reponse);
             	break;
 
+		case TURN_OFF_GPS:
+				printf("On eteint le GPS \r\n");
+				strcpy(ch, "AT+CGNSPWR=0\r\n");
+            	write(tty_fd, &ch, 16);
+            	sleep(2);
+            	r_gps(reponse);
+
+				break;
+
         case TRAME_NMEA:
 				printf("Preciser la trame NMEA RMC\r\n");
                 strcpy(ch,"AT+CGNSSEQ=\"RMC\"\r\n");
@@ -70,7 +79,7 @@ int w_gps(int action) {
                 printf("Parser les infos depuis la trame NMEA\r\n");
                 strcpy(ch,"AT+CGNSINF\r\n");
                 write(tty_fd,&ch,14);
-                sleep(2);
+                sleep(5);
                 r_gps(reponse);
                 //printf("Reponse du modem : %s\r\n",reponse);
                 break;
@@ -78,7 +87,8 @@ int w_gps(int action) {
         case URC_REPORT:
                 printf("URC report: chaque 2 GNSS fix\r\n");
                 strcpy(ch,"AT+CGNSURC=2\r\n");
-                write(tty_fd,&ch,strlen(ch));
+                write(tty_fd, &ch, strlen(ch));
+				sleep(2);
                 r_gps(reponse);
                 //printf("Reponse du modem : %s\r\n",reponse);
                 break;
@@ -138,6 +148,7 @@ int init_gps() {
 }
 
 int close_gps() {
+    w_gps(TURN_OFF_GPS);
     close(tty_fd);
     tcsetattr(STDOUT_FILENO, TCSANOW, &old_stdio);
 }
