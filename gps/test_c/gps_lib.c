@@ -63,17 +63,17 @@ int w_gps(int action) {
                 write(tty_fd,&ch,22);
                 sleep(2);
                 r_gps(reponse);
-                printf("Reponse du modem : %s\r\n",reponse);
+                //printf("Reponse du modem : %s\r\n",reponse);
                 break;
 
-        //case REQUEST_SET_BAND:
-        //        printf("Envoi de la bande vers le modem\r\n");
-        //        strcpy(ch,"AT+CGNSINF\r\n");
-        //        write(tty_fd,&ch,15);
-        //        sleep(2);
-        //        r_gps(reponse);
-        //        printf("Reponse du modem : %s\r\n",reponse);
-        //        break;
+        case PARSE_DATA:
+                printf("Envoi de la bande vers le modem\r\n");
+                strcpy(ch,"AT+CGNSINF\r\n");
+                write(tty_fd,&ch,15);
+                sleep(2);
+                r_gps(reponse);
+                //printf("Reponse du modem : %s\r\n",reponse);
+                break;
 
         //case REQUEST_TX_DATA:
         //        printf("Envoi de data : ABC\r\n");
