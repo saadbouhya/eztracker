@@ -16,6 +16,7 @@ int main(void) {
         w_gps(TURN_ON_GPS);
         w_gps(TRAME_NMEA);
 		w_gps(PARSE_DATA);
+		w_gps(URC_REPORT);
 
         //for (int x = 0; x < 2000; x++) { w_kineis(REQUEST_TX_DATA); sleep(60);}
 
