@@ -6,6 +6,7 @@
 #define TESTISA_ILG_KINEIS_H
 
 #define TURN_ON_GPS 1
+#define TRAME_NMEA 2
 
 #endif //TESTISA_ILG_KINEIS_H
 

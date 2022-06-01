@@ -49,38 +49,48 @@ int w_gps(int action) {
 
     switch(action) {
         case TURN_ON_GPS:
-            printf("On allume le GPS \r\n");
-            strcpy(ch, "AT+CGNSPWR=1\r\n");
-            write(tty_fd, &ch, 16);
-            sleep(2);
-            r_gps(reponse);
-            //printf("Reponse du kit : %s \r\n",reponse);
-            break;
-        //case REQUEST_SET_POWER:
+				printf("On allume le GPS \r\n");
+            	strcpy(ch, "AT+CGNSPWR=1\r\n");
+            	write(tty_fd, &ch, 16);
+            	sleep(2);
+            	r_gps(reponse);
+            	//printf("Reponse du kit : %s \r\n",reponse);
+            	break;
 
-        //        printf("Envoi de la puissance vers le modem\r\n");
-        //        strcpy(ch,"AT+PWR=1000\r\n");
-        //        write(tty_fd,&ch,15);
-        //        sleep(2);
-        //        r_kineis(reponse);
-        //        printf("Reponse du modem : %s\r\n",reponse);
-        //        break;
+        case TRAME_NMEA:
+				printf("Preciser la trame NMEA RMC\r\n");
+                strcpy(ch,"AT+CGNSSEQ=\"RMC\"\r\n");
+                write(tty_fd,&ch,22);
+                sleep(2);
+                r_gps(reponse);
+                printf("Reponse du modem : %s\r\n",reponse);
+                break;
+
         //case REQUEST_SET_BAND:
-
         //        printf("Envoi de la bande vers le modem\r\n");
-        //        strcpy(ch,"AT+BAND=B1\r\n");
+        //        strcpy(ch,"AT+CGNSINF\r\n");
         //        write(tty_fd,&ch,15);
         //        sleep(2);
-        //        r_kineis(reponse);
+        //        r_gps(reponse);
         //        printf("Reponse du modem : %s\r\n",reponse);
         //        break;
+
         //case REQUEST_TX_DATA:
         //        printf("Envoi de data : ABC\r\n");
-        //        strcpy(ch,"AT+TX=454647\r\n");
+        //        strcpy(ch,"AT+CGNSURC=2\r\n");
         //        write(tty_fd,&ch,strlen(ch));
-        //        r_kineis(reponse);
+        //        r_gps(reponse);
         //        printf("Reponse du modem : %s\r\n",reponse);
         //        break;
+
+		//case REQUEST_TX_DATA:
+        //        printf("Envoi de data : ABC\r\n");
+        //        strcpy(ch,"AT+CGNSTST=1\r\n");
+        //        write(tty_fd,&ch,strlen(ch));
+        //        r_gps(reponse);
+        //        printf("Reponse du modem : %s\r\n",reponse);
+        //        break;
+
         default:
             break;
     }
