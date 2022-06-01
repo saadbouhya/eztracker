@@ -29,13 +29,12 @@ int r_gps(char *lecture) {
 	
     while (test == 0) {
         if (read(tty_fd, &c, 1) > 0) {
-            //write(STDOUT_FILENO, &c, 1); //S'il y a un caratère lu, affichage sur la sortie standard
+            write(STDOUT_FILENO, &c, 1); //S'il y a un caratère lu, affichage sur la sortie standard
             lecture[i]=c;
             i++;
         } else {
             test = 1;
             lecture[i]='\0';
-			printf("%s\n", lecture);
         }
     }
     printf("\r\n");
