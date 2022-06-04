@@ -58,7 +58,6 @@ void read_dht11_dat(Dht *dht) {
 		sprintf(dht->temperature, "%d.%d", dht11_dat[2], dht11_dat[3]);
 		//printf("%s ----- %s\n", dht->humidity, dht->temperature);
 
-		break;
 	} else  {
 		printf("Data not good, skip\n");
 	}
