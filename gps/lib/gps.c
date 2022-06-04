@@ -162,7 +162,7 @@ void get_position(Position *p) {
 		  }
 
 		  if(is_GGA_received_completely==1) {
-			printf("GGA: %s\r\n",buff);
+			//printf("GGA: %s\r\n",buff);
 			is_GGA_received_completely = 0;
 
 			strcpy(lat_string, buff);
@@ -179,6 +179,7 @@ void get_position(Position *p) {
 
 					strcpy(p->latitude, localPosition.latitude);
 					strcpy(p->longitude, localPosition.longitude);
+				    printf("GGA: %s\r\n",buff);
 
 					break; 
 			}

@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <mosquitto.h>
 #include "gps/lib/gps.h"
 #include "dht/lib/dht.h"
 
@@ -38,8 +39,9 @@ int main() {
 								 myPosition.longitude,
 								 dht.humidity,
 								 dht.temperature);
-				
+				printf("%s\n", payload);	
 				mosquitto_publish(mosq, NULL, "eztracker_saad/test_mqtt", strlen(payload), payload, 0, false);
+				printf("Message sent\n");
 
 				delay(1000); 
 		}
