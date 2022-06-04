@@ -31,7 +31,10 @@ int main(int argc, char* argv[]) {
 		gtk_grid_attach(GTK_GRID(grid), result, 0, 0, 1, 1);
 
 		gtk_widget_show_all(window);
+		for (int i = 0; i < 10; i++)
+				printf("%d\n", i);
 		gtk_main();
+
 
 		return 0;
 }

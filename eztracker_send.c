@@ -43,7 +43,7 @@ int main() {
 				mosquitto_publish(mosq, NULL, "eztracker_saad/test_mqtt", strlen(payload), payload, 0, false);
 				printf("Message sent\n");
 
-				delay(1000); 
+				sleep(2); 
 		}
 
 		mosquitto_disconnect(mosq);
