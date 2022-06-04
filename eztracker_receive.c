@@ -47,7 +47,7 @@ void do_get_data(GtkWidget *get_data, gpointer data) {
 }
 
 void stop_data(GtkWidget *stop, gpointer data) {
-		char buffer[32] = "shut down!";
+		char buffer[32] = "shut down!\n";
 		mosquitto_loop_stop(mosq, true);
 
 		printf("shut down");
