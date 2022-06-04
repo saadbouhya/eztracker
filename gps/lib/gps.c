@@ -15,7 +15,7 @@ int serial_port;
 char dat;
 int flag = 0;
 char output_setup[100];
-unsigned int index = 0;
+unsigned int i = 0;
 Position localPosition;
 char w_buff[][256] = {"AT+CGNSPWR=1\r\n", 
 					  "AT+CGNSSEQ=\"RMC\"\r\n",
@@ -42,10 +42,10 @@ int init_gps() {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSPWR=1 --> %s\n", output_setup);
 				break;
 			}
@@ -53,17 +53,17 @@ int init_gps() {
 	}
 
 	serialPrintf(serial_port, w_buff[1]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSSEQ=RMC --> %s\n", output_setup);
 				break;
 			}
@@ -71,17 +71,17 @@ int init_gps() {
 	}
 
 	serialPrintf(serial_port, w_buff[2]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSINF --> %s\n", output_setup);
 				break;
 			}
@@ -89,17 +89,17 @@ int init_gps() {
 	}
 
 	serialPrintf(serial_port, w_buff[3]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSURC=2 --> %s\n", output_setup);
 				break;
 			}
@@ -109,17 +109,17 @@ int init_gps() {
 
 void close_gps() {
     serialPrintf(serial_port, w_buff[5]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSPWR=0 --> %s\n", output_setup);
 
 				break;
@@ -137,7 +137,7 @@ void get_position(Position *p) {
 	char latitude[50], longitude[50];
 
     serialPrintf(serial_port, w_buff[4]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		 if(serialDataAvail (serial_port)) {
