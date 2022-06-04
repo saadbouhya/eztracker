@@ -170,6 +170,7 @@ void get_position(Position *p) {
 			get_lon(lon_string, longitude);
 				  
 			if (strlen(latitude) == 11 && strlen(longitude) == 12) {
+					format_position();
 					strcpy(localPosition.latitude, latitude);
 					strcpy(localPosition.longitude, longitude);
 

@@ -18,7 +18,9 @@ int main() {
 
 	get_position(&myPosition);
 
-	printf("latitude: %s longitude: %s\r\n", myPosition.latitude, myPosition.longitude);
+	sleep(1);
+
+	printf("------------- latitude: %s longitude: %s ----------- \r\n", myPosition.latitude, myPosition.longitude);
 
 	close_gps();
 
