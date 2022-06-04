@@ -28,11 +28,12 @@ void init_gps() {
 
     if ((serial_port = serialOpen(MODEM, BAUDRATE)) < 0) {
 		fprintf(stderr, "Unable to open serial device: %s \n", strerror(errno));
-		return 1;
+		break;
 	}
 
 	if (wiringPiSetup() == -1) {
 		fprintf(stdout, "Unable to start wiringPi: %s \n", strerror(errno));
+		break;
 	}
 
 	serialPrintf(serial_port, w_buff[0]);
@@ -131,7 +132,6 @@ void get_position(Position *p) {
  	unsigned char IsitGGAstring=0;
 	unsigned char GGA_index=0;
 	unsigned char is_GGA_received_completely = 0;
-	unsigned int index = 0;
     char buff[100],GGA_code[3];
     char lat_string[100], lon_string[100];
 	char latitude[50], longitude[50];
