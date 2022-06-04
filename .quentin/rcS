@@ -1,0 +1,13 @@
+#!/bin/sh
+ mount -t proc proc /proc
+ mount -o remount,rw /
+ mount -a
+ echo /sbin/mdev > /proc/sys/kernel/hotplug
+ /sbin mdev -s
+ echo /sbin/mdev > /proc/sys/kernel/hotplug 
+ loadkmap < /etc/azerty.kmap
+ ifconfig lo 127.0.0.1
+ ifconfig eth0 up
+ modprobe usbserial
+ modprobe ftdi_sio
+

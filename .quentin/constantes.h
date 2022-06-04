@@ -1,0 +1,13 @@
+//
+// Created by adminlocal on 12/03/2022.
+//
+#define REQUEST_SERIAL_NUMBER 1
+#define REQUEST_ID 2
+#define REQUEST_SET_POWER 3
+#define REQUEST_SET_BAND 4
+#define REQUEST_TX_DATA 5
+
+#ifndef TESTISA_CONSTANTES_H
+#define TESTISA_CONSTANTES_H
+
+#endif //TESTISA_CONSTANTES_H
