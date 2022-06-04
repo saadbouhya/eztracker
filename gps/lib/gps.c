@@ -24,16 +24,16 @@ char w_buff[][256] = {"AT+CGNSPWR=1\r\n",
 					  "AT+CGNSTST=1\r\n",
 				      "AT+CGNSPWR=0\r\n"};
 
-void init_gps() {
+int init_gps() {
 
     if ((serial_port = serialOpen(MODEM, BAUDRATE)) < 0) {
 		fprintf(stderr, "Unable to open serial device: %s \n", strerror(errno));
-		break;
+		return -1;
 	}
 
 	if (wiringPiSetup() == -1) {
 		fprintf(stdout, "Unable to start wiringPi: %s \n", strerror(errno));
-		break;
+		return -1;
 	}
 
 	serialPrintf(serial_port, w_buff[0]);

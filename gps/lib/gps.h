@@ -7,7 +7,7 @@ typedef struct {
 		char longitude[MAX_POSITION_LEN];
 } Position;
 
-void init_gps();
+int init_gps();
 void get_position(Position *p);
 void close_gps();
 void get_lon(char lon_string[100], char longitude[50]);
