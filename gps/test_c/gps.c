@@ -18,7 +18,7 @@ int main() {
 	unsigned char IsitGGAstring=0;
 	unsigned char GGA_index=0;
 	unsigned char is_GGA_received_completely = 0;
-	unsigned int index = 0;
+	unsigned int i = 0;
 
 	if ((serial_port = serialOpen("/dev/ttyS0", 115200)) < 0) {
 		fprintf(stderr, "Unable to open serial device: %s \n", strerror(errno));
@@ -39,10 +39,10 @@ int main() {
 
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSPWR=1 --> %s\n", output_setup);
 				break;
 			}
@@ -50,17 +50,17 @@ int main() {
 	}
 
 	serialPrintf(serial_port, w_buff[1]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSSEQ=RMC --> %s\n", output_setup);
 				break;
 			}
@@ -70,17 +70,17 @@ int main() {
 
 	
 	serialPrintf(serial_port, w_buff[2]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSINF --> %s\n", output_setup);
 				break;
 			}
@@ -88,17 +88,17 @@ int main() {
 	}
 
 	serialPrintf(serial_port, w_buff[3]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if (serialDataAvail(serial_port)) {
 			dat = serialGetchar(serial_port);
 
 			if (dat == 'O' && flag == 0) {
-				output_setup[index++] = dat;		
+				output_setup[i++] = dat;		
 				flag = 1;
 			} else if (flag == 1 && dat == 'K') {
-				output_setup[index++] = dat;
+				output_setup[i++] = dat;
 				printf("AT+CGNSURC=2 --> %s\n", output_setup);
 				break;
 			}
@@ -106,7 +106,7 @@ int main() {
 	}
 
 	serialPrintf(serial_port, w_buff[4]);
-	index = 0;
+	i = 0;
 	flag = 0;
 	while(1) {
 		if(serialDataAvail (serial_port)) {
