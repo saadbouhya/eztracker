@@ -7,3 +7,4 @@ typedef struct {
 		char humidity[MAX_DHT_LEN];
 } Dht;
 
+void read_dht11_dat(Dht *dht);
