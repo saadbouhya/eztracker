@@ -13,6 +13,10 @@
 
 int serial_port;
 char dat;
+int flag = 0;
+char output_setup[100];
+unsigned int index = 0;
+Position localPosition;
 char w_buff[][256] = {"AT+CGNSPWR=1\r\n", 
 					  "AT+CGNSSEQ=\"RMC\"\r\n",
 					  "AT+CGNSINF\r\n", 
@@ -21,8 +25,6 @@ char w_buff[][256] = {"AT+CGNSPWR=1\r\n",
 				      "AT+CGNSPWR=0\r\n"};
 
 void init_gps() {
-	unsigned int index = 0;
-	char output_setup[100];
 
     if ((serial_port = serialOpen(MODEM, BAUDRATE)) < 0) {
 		fprintf(stderr, "Unable to open serial device: %s \n", strerror(errno));
