@@ -103,6 +103,8 @@ int init_gps() {
 			}
 		}
 	}
+
+	return 1;
 }
 
 void close_gps() {
