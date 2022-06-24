@@ -20,7 +20,7 @@ int main() {
 	unsigned char is_GGA_received_completely = 0;
 	unsigned int i = 0;
 
-	if ((serial_port = serialOpen("/dev/ttyS0", 115200)) < 0) {
+	if ((serial_port = serialOpen("/dev/ttyUSB0", 115200)) < 0) {
 		fprintf(stderr, "Unable to open serial device: %s \n", strerror(errno));
 		return 1;
 	}
